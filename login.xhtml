@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="content">
+            <div class="page-header">
+                <h2>Login</h2>
+                <p>Sign in to manage the stationery inventory</p>
+            </div>
+            <div class="form-container login-container">
+                <h:form id="loginForm">
+                    <h:messages styleClass="msg-error"
+                                showSummary="true"
+                                showDetail="false"/>
+                    <div class="form-group">
+                        <h:outputLabel for="username" value="Username" styleClass="form-label"/>
+                        <h:inputText id="username"
+                                     value="#{loginBean.username}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Username is required."/>
+                        <h:message for="username" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="password" value="Password" styleClass="form-label"/>
+                        <h:inputSecret id="password"
+                                       value="#{loginBean.password}"
+                                       styleClass="form-control"
+                                       required="true"
+                                       requiredMessage="Password is required."/>
+                        <h:message for="password" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:commandButton value="Login"
+                                         action="#{loginBean.login}"
+                                         styleClass="btn btn-primary"/>
+                    </div>
+                </h:form>
+                <div class="login-hint">
+                    <p>Demo credentials: <strong>admin</strong> / <strong>admin123</strong></p>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
