@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="content">
+            <div class="hero-banner">
+                <h2>Welcome to StationeryHub</h2>
+                <p>Your complete stationery inventory management system</p>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">&#128196;</div>
+                    <h3>View Items</h3>
+                    <p>Browse all stationery items with live Ajax search and category filtering.</p>
+                    <h:link outcome="viewItems" styleClass="btn btn-primary">View All Items</h:link>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128203;</div>
+                    <h3>Add Item</h3>
+                    <p>Add new stationery products to the inventory quickly and easily.</p>
+                    <h:link outcome="addItem" styleClass="btn btn-primary">Add New Item</h:link>
+                </div>
+                <div class="card">
+                    <div class="card-icon">&#128222;</div>
+                    <h3>Contact Us</h3>
+                    <p>Get in touch with the StationeryHub support team.</p>
+                    <h:link outcome="contact" styleClass="btn btn-secondary">Contact</h:link>
+                </div>
+            </div>
+            <h:panelGroup rendered="#{sessionBean.loggedIn}">
+                <div class="session-info">
+                    <p>You are logged in as: <strong>#{sessionBean.loggedInUsername}</strong></p>
+                </div>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</html>
