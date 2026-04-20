@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="content">
+            <div class="page-header">
+                <h2>Add New Item</h2>
+                <p>Fill in the details below to add a new stationery item</p>
+            </div>
+            <div class="form-container">
+                <h:form id="addForm">
+                    <h:messages styleClass="msg-error"
+                                showSummary="true"
+                                showDetail="false"/>
+                    <div class="form-group">
+                        <h:outputLabel for="iname"
+                                       value="Item Name *"
+                                       styleClass="form-label"/>
+                        <h:inputText id="iname"
+                                     value="#{itemBean.currentItem.name}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Item name is required.">
+                            <f:validateLength minimum="2" maximum="150"/>
+                        </h:inputText>
+                        <h:message for="iname" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="icat"
+                                       value="Category *"
+                                       styleClass="form-label"/>
+                        <h:selectOneMenu id="icat"
+                                         value="#{itemBean.currentItem.categoryId}"
+                                         styleClass="form-control"
+                                         required="true"
+                                         requiredMessage="Please select a category.">
+                            <f:selectItems value="#{itemBean.categorySelectItems}"/>
+                        </h:selectOneMenu>
+                        <h:message for="icat" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="ibrand"
+                                       value="Brand"
+                                       styleClass="form-label"/>
+                        <h:inputText id="ibrand"
+                                     value="#{itemBean.currentItem.brand}"
+                                     styleClass="form-control">
+                            <f:validateLength maximum="100"/>
+                        </h:inputText>
+                        <h:message for="ibrand" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="iprice"
+                                       value="Price (£) *"
+                                       styleClass="form-label"/>
+                        <h:inputText id="iprice"
+                                     value="#{itemBean.currentItem.price}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Price is required.">
+                            <f:convertNumber minFractionDigits="2"
+                                             maxFractionDigits="2"/>
+                            <f:validateDoubleRange minimum="0.01"/>
+                        </h:inputText>
+                        <h:message for="iprice" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="iqty"
+                                       value="Quantity in Stock *"
+                                       styleClass="form-label"/>
+                        <h:inputText id="iqty"
+                                     value="#{itemBean.currentItem.quantityInStock}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Quantity is required.">
+                            <f:validateLongRange minimum="0"/>
+                        </h:inputText>
+                        <h:message for="iqty" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idesc"
+                                       value="Description"
+                                       styleClass="form-label"/>
+                        <h:inputTextarea id="idesc"
+                                         value="#{itemBean.currentItem.description}"
+                                         styleClass="form-control"
+                                         rows="3"/>
+                        <h:message for="idesc" styleClass="field-error"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="idate"
+                                       value="Date Added (yyyy-MM-dd) *"
+                                       styleClass="form-label"/>
+                        <h:inputText id="idate"
+                                     value="#{itemBean.currentItem.dateAdded}"
+                                     styleClass="form-control"
+                                     required="true"
+                                     requiredMessage="Date is required.">
+                            <f:convertDateTime pattern="yyyy-MM-dd"/>
+                        </h:inputText>
+                        <h:message for="idate" styleClass="field-error"/>
+                    </div>
+                    <div class="form-buttons">
+                        <h:commandButton value="Add Item"
+                                         action="#{itemBean.addItem}"
+                                         styleClass="btn btn-primary"/>
+                        <h:link outcome="viewItems"
+                                styleClass="btn btn-secondary">Cancel</h:link>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
